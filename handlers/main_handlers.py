@@ -3,6 +3,8 @@ from aiogram.dispatcher import Dispatcher
 from aiogram import types
 from aiogram.types import ContentType
 
+from creat_bot import bot
+
 start_buttons = ["Информация о боте", "Загрузить фото"]
 
 
@@ -23,6 +25,11 @@ async def cmd_download(message: types.Message):
 
 async def cmd_media(message: types.Message):
     name_user = message.from_user.first_name
+    print(message.document)
+    photo_id = message.document.file_id
+    file = await bot.get_file(photo_id)
+    file_path = file.file_path
+    await bot.download_file(file_path, "models/photo_2022.jpg")
     await message.answer(f"{name_user} отправил фото")
 
 
