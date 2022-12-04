@@ -14,8 +14,7 @@ def change_photo(image):
     for (x, y, w, h) in faces:
         center = (x + w // 2, y + h // 2)
         frame = cv.ellipse(image, center, (w // 2, h // 2), 0, 0, 360, (255, 0, 255), 4)
-        faceROI = image[y:y + h, x:x + w]
-        # -- In each face, detect eyes
+
 
     cv.imshow('Capture - Face detection', frame)
     cv.waitKey(0)
