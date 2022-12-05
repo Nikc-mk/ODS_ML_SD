@@ -14,21 +14,18 @@ def send_welcome(message):
 @bot.message_handler(content_types=['photo'])
 def handle_docs_audio(message: telebot.types.Message):
     file_id = message.photo[-1].file_id
-    print(file_id)
     file = bot.get_file(file_id=file_id)
     file_path = file.file_path
     image_name = f"{file_id}.jpg"
     downloaded_file = bot.download_file(file_path=file_path)
     with open("/home/Nikolay/PycharmProjects/ODS_ML_SD/models/download_photo/" + image_name, 'wb') as new_file:
         new_file.write(downloaded_file)
-    sleep(10)
+    sleep(5)
     change_photo(image_name=image_name)
-    print("ok")
-    sleep(10)
-    print(message)
+    sleep(5)
     bot.reply_to(message, text="Фото получено")
-    photo = open(f"/home/Nikolay/PycharmProjects/ODS_ML_SD/models/save_photo/{image_name}-1.jpg", "rb")
-    bot.send_photo(chat_id=message.chat.id, photo=photo)
+    with open(f"/home/Nikolay/PycharmProjects/ODS_ML_SD/models/save_photo/{image_name}-1.jpg", "rb") as photo:
+        bot.send_photo(chat_id=message.chat.id, photo=photo)
 
 # async def cmd_start(message: types.Message):
 #     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, input_field_placeholder='Нажмите на кнопку ☟')
