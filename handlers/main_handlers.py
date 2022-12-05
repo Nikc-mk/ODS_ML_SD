@@ -1,4 +1,3 @@
-from time import sleep
 from models.model_1_opencv import change_photo
 import telebot
 from creat_bot import bot
@@ -18,13 +17,11 @@ def handle_docs_audio(message: telebot.types.Message):
     file_path = file.file_path
     image_name = f"{file_id}.jpg"
     downloaded_file = bot.download_file(file_path=file_path)
-    with open("/home/Nikolay/PycharmProjects/ODS_ML_SD/models/download_photo/" + image_name, 'wb') as new_file:
+    with open("models/download_photo/" + image_name, 'wb') as new_file:
         new_file.write(downloaded_file)
-    sleep(5)
     change_photo(image_name=image_name)
-    sleep(5)
     bot.reply_to(message, text="Фото получено")
-    with open(f"/home/Nikolay/PycharmProjects/ODS_ML_SD/models/save_photo/{image_name}-1.jpg", "rb") as photo:
+    with open(f"models/save_photo/{image_name}-1.jpg", "rb") as photo:
         bot.send_photo(chat_id=message.chat.id, photo=photo)
 
 # async def cmd_start(message: types.Message):
