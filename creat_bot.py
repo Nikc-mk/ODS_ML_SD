@@ -1,5 +1,4 @@
-from aiogram import Bot
-from aiogram.dispatcher import Dispatcher
+import telebot
 import logging
 import botconfig
 
@@ -8,5 +7,4 @@ import botconfig
 logging.basicConfig(level=logging.INFO)
 
 # Initialize bot and dispatcher
-bot = Bot(token=botconfig.API_TOKEN)
-dp = Dispatcher(bot)
+bot = telebot.TeleBot(botconfig.API_TOKEN, parse_mode=None)
