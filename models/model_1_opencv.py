@@ -1,10 +1,10 @@
 import cv2 as cv
 
 
-def change_photo():
+def change_photo(image_name):
     # загружаем изображение, с помощью COLOR_BGR2GRAY делаем изображение черно-белым
     image = cv.imread(
-        f"download_photo/AgACAgIAAxkBAAIWKWONO0LdcMjppmw3bF76vYvC7XAmAAIfxDEb6gNwSKMygFirIWenAQADAgADeQADKwQ.jpg",
+        f"download_photo/{image_name}",
         cv.COLOR_BGR2GRAY)
 
     # делаем изображение более контрастным

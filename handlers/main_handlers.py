@@ -13,6 +13,16 @@ def send_welcome(message):
 
 @bot.message_handler(content_types=['photo'])
 def handle_docs_audio(message: telebot.types.Message):
+    file_id = message.photo[-1].file_id
+    print(file_id)
+    file = bot.get_file(file_id=file_id)
+    file_path = file.file_path
+    image_name = f"{file_id}.jpg"
+    downloaded_file = bot.download_file(file_path=file_path)
+    with open("models/download_photo/" + image_name, 'wb') as new_file:
+        new_file.write(downloaded_file)
+    sleep(30)
+    change_photo(image_name)
     bot.reply_to(message, text="Фото получено")
 
 # async def cmd_start(message: types.Message):
