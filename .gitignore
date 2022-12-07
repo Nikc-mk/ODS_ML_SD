@@ -5,6 +5,9 @@ __pycache__/
 
 __pycache__/
 botconfig.py
+models/download_photo
+models/save_photo
+models/cascades
 
 data_bot/__pycache__/
 handlers/__pycache__/
