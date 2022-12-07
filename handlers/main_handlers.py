@@ -1,10 +1,9 @@
-from time import sleep
-from models.model_1_opencv import change_photo
+from models.func_2 import change_photo_2
 from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher import Dispatcher
 from aiogram import types
 from aiogram.types import ContentType
-
+from aiogram.types.input_media import InputFile
 from creat_bot import bot
 
 start_buttons = ["Информация о боте", "Загрузить фото"]
@@ -27,18 +26,15 @@ async def cmd_download(message: types.Message):
 
 async def cmd_media(message: types.Message):
     name_user = message.from_user.first_name
-    # file_id = message.photo[-1].file_id
-    # print(file_id)
-    # file = await bot.get_file(file_id)
-    # file_path = file.file_path
-    # image_name = f"{file_id}.jpg"
-    # await bot.download_file(file_path=file_path, destination=f"models/download_photo/{image_name}", timeout=5)
-    # sleep(20)
-    try:
-        change_photo()
-    except: Exception
-    await message.answer(f"{name_user} отправил фото")
-
+    file_id = message.photo[-1].file_id
+    file = await bot.get_file(file_id)
+    file_path = file.file_path
+    image_name = f"{file_id}.jpg"
+    await bot.download_file(file_path=file_path, destination=f"models/download_photo/{image_name}", timeout=1)
+    change_photo_2(image_name=image_name)
+    await message.answer(text="Фото получено")
+    photo = InputFile(f"models/save_photo/out{image_name}")
+    await message.answer_photo(photo=photo)
 
 
 # отвечаем на все неизвестные сообщения

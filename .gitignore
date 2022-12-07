@@ -134,3 +134,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/models/cascades/haarcascade_frontalface_default.xml
