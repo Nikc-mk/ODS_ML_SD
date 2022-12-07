@@ -18,5 +18,5 @@ def change_photo(image_name):
         center = (x + w // 2, y + h // 2)
         frame = cv.ellipse(image, center, (w // 2, h // 2), 0, 0, 360, (255, 0, 255), 4)
 
-    cv.imwrite(f"/home/Nikolay/PycharmProjects/ODS_ML_SD/models/save_photo/{image_name}-1.jpg",
+    cv.imwrite(f"/home/Nikolay/PycharmProjects/ODS_ML_SD/models/save_photo/out{image_name}",
                img=frame)
